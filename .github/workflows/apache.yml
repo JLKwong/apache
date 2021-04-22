@@ -19,3 +19,4 @@ jobs:
           export DOCKER_CLI_EXPERIMENTAL=enabled
           repo="JLKwong/apache"
           source .github/workflows/utils.sh
+          alpine_arm_sha=$(get_manifest_sha "treehouses/alpine:latest" "arm")
