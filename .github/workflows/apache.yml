@@ -20,3 +20,4 @@ jobs:
           repo="JLKwong/apache"
           source .github/workflows/utils.sh
           alpine_arm_sha=$(get_manifest_sha "treehouses/alpine:latest" "arm")
+          echo "alpine arm"
