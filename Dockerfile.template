@@ -1,6 +1,6 @@
 FROM {{base_image}}
 
-RUN apk update -y   && apk add -y apache2
+RUN apk --no-cache update && apk  add apache2
 
 RUN mkdir /var/run/apache2
 
