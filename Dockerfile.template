@@ -2,7 +2,7 @@ FROM {{base_image}}
 
 RUN apk --no-cache update && apk  add apache2
 
-RUN mkdir /var/run/apache2
+RUN mkdir -p /var/run/apache2
 
 EXPOSE 80
 
