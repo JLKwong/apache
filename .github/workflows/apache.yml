@@ -6,7 +6,7 @@ on:
     - cron: '0 */8 * * *'
 
 jobs: 
-  nginx-docker-image-build:
+  apache-docker-image-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,35 +22,35 @@ jobs:
           debian_arm_sha=$(get_manifest_sha "treehouses/debian:latest" "arm")
           echo "debian arm"
           echo $debian_arm_sha
-          nginx_arm_sha=$(get_manifest_sha "nginx:latest" "arm")
-          echo "nginx arm"
-          echo $nginx_arm_sha
-          flag_arm=$(is_base "treehouses/debian@"$debian_arm_sha "nginx@"$nginx_arm_sha)
+          apache_arm_sha=$(get_manifest_sha "apache:latest" "arm")
+          echo "apache arm"
+          echo $apache_arm_sha
+          flag_arm=$(is_base "treehouses/debian@"$debian_arm_sha "apache@"$apache_arm_sha)
           echo "flag arm"
           echo $flag_arm
           debian_amd64_sha=$(get_manifest_sha "treehouses/debian:latest" "amd64")
           echo $debian_amd64_sha
-          nginx_amd64_sha=$(get_manifest_sha "nginx:latest" "amd64")
-          echo $nginx_amd64_sha
-          flag_amd64=$(is_base "treehouses/debian@"$debian_amd64_sha "nginx@"$nginx_amd64_sha)
+          apache_amd64_sha=$(get_manifest_sha "apache:latest" "amd64")
+          echo $apache_amd64_sha
+          flag_amd64=$(is_base "treehouses/debian@"$debian_amd64_sha "apache@"$apache_amd64_sha)
           echo "flag amd64"
           echo $flag_amd64
           debian_arm64_sha=$(get_manifest_sha "treehouses/debian:latest" "arm64")
           echo "debian arm64"
           echo $debian_arm64_sha
-          nginx_arm64_sha=$(get_manifest_sha "nginx:latest" "arm64")
-          echo "nginx arm64"
-          echo $nginx_arm64_sha
-          flag_arm64=$(is_base "treehouses/debian@"$debian_arm64_sha "nginx@"$nginx_arm64_sha)
+          apache_arm64_sha=$(get_manifest_sha "apache:latest" "arm64")
+          echo "apache arm64"
+          echo $apache_arm64_sha
+          flag_arm64=$(is_base "treehouses/debian@"$debian_arm64_sha "apache@"$apache_arm64_sha)
           echo "flag arm64"
           echo $flag_arm64
-          version2=$(image_version nginx:latest)
+          version2=$(image_version apache:latest)
           echo "repo version is $version2"
           docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
           build_image "treehouses/debian:latest" arm "$repo"
           build_image "treehouses/debian:latest" amd64 "$repo"
           build_image "treehouses/debian:latest" arm64 "$repo"
-          flag=$(compare "treehouses/debian@"$debian_arm_sha "nginx@"$nginx_arm_sha "treehouses/debian@"$debian_amd64_sha "nginx@"$nginx_amd64_sha "treehouses/debian@"$debian_arm64_sha "nginx@"$nginx_arm64_sha "nginx" "nginx-tags:amd64")
+          flag=$(compare "treehouses/debian@"$debian_arm_sha "apache@"$apache_arm_sha "treehouses/debian@"$debian_amd64_sha "apache@"$apache_amd64_sha "treehouses/debian@"$debian_arm64_sha "apache@"$apache_arm64_sha "apache" "apache-tags:amd64")
           echo $flag
           deploy_image "$repo" arm
           deploy_image "$repo" amd64
