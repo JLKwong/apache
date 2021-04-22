@@ -1,4 +1,4 @@
-name: nginx-docker-image-build
+name: docker-test
 
 on:
   push:
